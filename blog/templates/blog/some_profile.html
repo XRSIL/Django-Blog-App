@@ -1,0 +1,91 @@
+{% extends 'blog/base.html' %}
+{% load blog_template_tags %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section pl-3 pt-4 col-12 col-lg-10 col-xl-8" style="color: #c2c2c2; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 30px;">
+       <div class="content-section">
+           <div class="media">
+               <img class="rounded-circle account-img" style="width: 120px;" src="{{ view.kwargs.username|extractProfileImage }}">
+               <div class="media-body pl-4" style="color: #8d8d8d;">
+                   <a class="title account-heading" href="{% url 'some-profile' view.kwargs.username %}">
+                        <h2>{{ view.kwargs.username }}</h2>
+                    </a>
+                   <div class="pt-3" style="font-size: 13px;">
+                       <div style="color: #c2c2c2;">First Name: </div>{{ view.kwargs.username|extractFirstName }}
+                   </div>
+                   <div class="pt-3" style="font-size: 13px;">
+                       <div style="color: #c2c2c2;">Last Name: </div>{{ view.kwargs.username|extractLastName }}
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="d-flex justify-content-center mt-4 mb-0 p-0 pr-3 col-sm-12 col-md-12 col-lg-12">
+           <h2 style="color: #d4d4d4; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 28px;">
+               Posts of user <a class="author" href="{% url 'some-profile' view.kwargs.username %}" style="font-weight: 500; color: #9a0001; font-size: 30px;">{{ view.kwargs.username }}</a>
+           </h2>
+   </div>
+   <div class="d-flex flex-row-reverse mb-0 p-0 pr-3 col-sm-12 col-md-12 col-lg-12">
+        {% if is_paginated %}
+            <div class="my_pages mt-0 mb-4">
+
+                {% if page_obj.has_previous %}
+                    <a class="btn " href="?page=1"><img style="height: 14px;" src="../../static/blog/images/d_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.previous_page_number }}"><img style="height: 14px;" src="../../static/blog/images/slider.png"></a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn" style="background-color: #3c3a3a;color: #ffffff; border: 1px solid #3c3a3a;" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn" href="?page={{ page_obj.next_page_number }}"><img style="height: 14px;" src="../../static/blog/images/f_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.paginator.num_pages }}"><img style="height: 14px;" src="../../static/blog/images/d_slider_f.png"></a>
+                {% endif %}
+            </div>
+
+        {% endif  %}
+    </div>
+   {% for post in posts %}
+        <div class="col-sm-12 col-md-12 col-lg-12 d-flex mt-3">
+            <div class="posts col-12 d-flex">
+                <div class="col-12">
+                    <a class="title" href="{% url 'post-detail' post.id %}">
+                        <h2>{{ post.title }}</h2>
+                    </a>
+                    <p class="author">Posted by <a href=""><span style="color: brown; font-weight: bold;">{{ post.author }}</span></a> on {{ post.date|date:"F j, Y" }}</p>
+                    <p style="color: #9e9e9e;">{{ post.content }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="d-flex mt-3 p-0 pl-3 col-sm-12 col-md-12 col-lg-12">
+        {% if is_paginated %}
+            <div class="my_pages mb-4">
+
+                {% if page_obj.has_previous %}
+                    <a class="btn " href="?page=1"><img style="height: 14px;" src="../../static/blog/images/d_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.previous_page_number }}"><img style="height: 14px;" src="../../static/blog/images/slider.png"></a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn" style="background-color: #3c3a3a;color: #ffffff; border: 1px solid #3c3a3a;" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn" href="?page={{ page_obj.next_page_number }}"><img style="height: 14px;" src="../../static/blog/images/f_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.paginator.num_pages }}"><img style="height: 14px;" src="../../static/blog/images/d_slider_f.png"></a>
+                {% endif %}
+            </div>
+
+        {% endif  %}
+    </div>
+{% endblock content %}

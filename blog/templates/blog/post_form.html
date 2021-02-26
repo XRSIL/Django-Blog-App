@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section pl-3 col-12 col-lg-10 col-xl-8" style="color: #c2c2c2; font-family: 'Poppins', sans-serif; font-weight: 200; font-size: 14px;">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="pt-4 pb-3">Post</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+   </div>
+{% endblock content %}

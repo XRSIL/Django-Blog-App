@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+   <div class="content-section pl-3 col-12 col-lg-10 col-xl-8" style="color: #c2c2c2; font-family: 'Poppins', sans-serif; font-weight: 200; font-size: 14px;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <div style="font-size: 25px; margin-bottom: 25px;">Are you sure you want to delete the post '{{ object.title }}'?</div>
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline-secondary ml-3" href="{% url 'post-detail' object.id %}">Cancel</a>
+            </div>
+        </form>
+   </div>
+{% endblock content %}

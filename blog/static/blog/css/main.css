@@ -1,0 +1,160 @@
+body {
+    width: 85%;
+    background-color: #1c1c1c;
+    margin:auto;
+    border-color: transparent;
+    min-width: 450px;
+}
+.posts {
+    color: #acacac;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #444444;
+    padding: 10px 20px 10px 20px;
+    background-color: #1f1f1f;
+}
+.logo {
+    font-family: 'Texturina', sans-serif;
+    font-size: 45px;
+    color: #c2c2c2;
+}
+
+.navbar .navbar-nav li a{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: #c2c2c2;
+    transition: 300ms;
+    font-size: 15px;
+}
+.navbar .navbar-nav li a:hover{
+    color: #ffffff;
+}
+
+.sidebar{
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    color: #c2c2c2;
+}
+
+.sidebar:hover {
+    color: #ffffff;
+}
+.jumbotron {
+    background-color: #1c1c1c;
+}
+.sb-element {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #c2c2c2;
+}
+
+.sb-element:hover > a{
+    color: #ffffff;
+    background-color: #262626;
+}
+.sb-element:hover{
+    background-color: #262626;
+    color: #ffffff;
+}
+
+.author {
+    font-size: 12px;
+}
+
+.author a:hover{
+    text-decoration: underline;
+    color: brown;
+}
+
+.header-height {
+    height: 70px;
+}
+
+.dropdown-menu{
+    background-color: #282828;
+}
+
+.dropdown-item:hover{
+    background-color: #323232;
+}
+
+@media screen and (max-width: 375px){
+    .logo{font-size: 40px;}
+    h2{font-size: 20px}
+    .sidebar{font-size: 9px;}
+    .author{font-size: 8px;}
+    .posts{font-size: 9px;}
+    .navbar .navbar-nav li a{font-size: 11px;}
+    .header-height{height: 40px}
+}
+@media screen and (max-width: 768px){
+    h2{font-size: 20px}
+    .author{font-size: 9px;}
+    .posts{font-size: 11px;}
+}
+
+@media screen and (max-width: 992px){
+    h2{font-size: 21px}
+    .sidebar{font-size: 13px;}
+    .author{font-size: 10px;}
+    .posts{font-size: 12px;}
+    .navbar .navbar-nav li a{font-size: 14px;}
+    .header-height{height: 66px}
+}
+@media screen and (min-width: 992px){
+    h2{font-size: 23px}
+    .sidebar{font-size: 14px;}
+    .author{font-size: 11px;}
+    .posts{font-size: 14px;}
+    .header-height{height: 68px}
+}
+
+.textinput, .emailinput, .form-control, .form-control:focus{
+    height: 30px;
+    background-color: #222222;
+    border: 1px solid #3c3a3a;
+    border-radius: 4px;
+    color: #7f7f7f;
+    font-size: 14px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.title{
+    color: #acacac;
+    transition: 300ms;
+    text-decoration: none;
+}
+
+.title:hover{
+    color: #dcdcdc;
+    text-decoration: none;
+}
+
+.textarea{
+    min-height: 300px;
+}
+
+.create_post {
+    color: #acacac;
+    width: auto;
+    text-align: left;
+    border: 3px solid #262626;
+}
+
+.my_pages a{
+    background-color: transparent;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+    border: 1px solid #3c3a3a;
+    color: #bdbdbd;
+}
+.my_pages a:hover{
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #3c3a3a;
+}

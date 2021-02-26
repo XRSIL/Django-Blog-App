@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-sm-12 col-md-12 col-lg-12 d-flex mt-3">
+        <div class="posts col-12 d-flex">
+            <div class="col-2 p-0">
+                <img class="rounded-circle account-img" style="width: 100%;" src="{{ object.author.profile.image.url }}">
+            </div>
+            <div class="col-10">
+                <h2 style="margin-right: 20px;">{{ object.title }}</h2>
+                <p class="author">Posted by <a href="{% url 'some-profile' object.author.username %}"><span style="color: brown; font-weight: bold;">{{ object.author }}</span></a> on {{ object.date|date:"F j, Y" }}</p>
+                <p style="color: #9e9e9e;">{{ object.content }}</p>
+                {% if object.author == user %}
+                <div class="d-flex flex-row-reverse sidebar" style="height: auto;">
+                    <a class="sb-element ml-3" style="text-decoration: none; padding-top: 0; padding-bottom: 0;" href="{% url 'post-update' object.id %}">
+                        <div class="p-2" style="border: 1px solid #444444;">Update</div>
+                    </a>
+                    <a class="sb-element ml-3" style="text-decoration: none; padding-top: 0; padding-bottom: 0;" href="{% url 'post-delete' object.id %}">
+                        <div class="p-2" style="border: 1px solid #444444;">Delete</div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!--  #444444 -->

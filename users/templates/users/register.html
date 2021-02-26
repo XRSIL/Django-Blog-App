@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section pl-3 col-12 col-lg-10 col-xl-8" style="color: #c2c2c2; font-family: 'Poppins', sans-serif; font-weight: 200; font-size: 14px;">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="pt-4 pb-3">Sign Up</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="pt-3" style="border-top: 1px solid #c2c2c2;">
+            <small class="text-muted" style="font-size: 14px;">
+                Already have an account? <a class="ml-2" href="/login" style="text-decoration: none;">Log in</a>
+            </small>
+        </div>
+   </div>
+{% endblock content %}

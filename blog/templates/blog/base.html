@@ -1,0 +1,138 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- My Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
+
+    <!-- My Javascript -->
+
+    <!-- My Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
+
+
+
+    {% if title %}
+        <title> Blog – {{ title }}</title>
+    {% else %}
+        <title> Blog </title>
+    {% endif %}
+
+  </head>
+  <body>
+      <div class="container col-12 d-flex justify-content-between ">
+          <div class="jumbotron jumbotron-fluid m-auto ml-md-0" >
+              <div class="container">
+                  <h1 class="display-5"><span class="logo"><a href="/" style="text-decoration: none; color: #c2c2c2;">Personal Blog</a></span></h1>
+              </div>
+          </div>
+          <div class="d-none d-md-flex align-items-center justify-content-between" style="width: 200px;">
+              <a href="#"><img src="{% static 'blog/images/iconfinder_instagram_online_social_media_photo_734395.png' %}" style="height: 40px;"></a>
+              <a href="#"><img src="{% static 'blog/images/iconfinder_mail_email_envelope_send_message_1011335.png' %}" style="height: 40px;"></a>
+              <a href="#"><img src="{% static 'blog/images/iconfinder_online_social_media_facebook_734386.png' %}" style="height: 40px;"></a>
+              <a href="#"><img src="{% static 'blog/images/iconfinder_twitter_online_social_media_734367.png' %}" style="height: 40px;"></a>
+          </div>
+      </div>
+      <nav>
+          <div class="navbar navbar-expand header-height " style="border-bottom: 0.1mm solid #909090; border-top: 0.1mm solid #909090; background-color: #1c1c1c; width: 100%;">
+              <div class="collapse navbar-collapse" id="navbarResponsive" style="z-index: 300;">
+                  <ul class="navbar-nav mr-0 ml-auto ml-md-0 mr-md-auto">
+                      <li class="nav-item">
+                           <a class="nav-link" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                           <a class="nav-link" href="/about">About</a>
+                      </li>
+                  </ul>
+                  <ul class="navbar-nav mr-auto mr-md-0">
+                      {% if user.is_authenticated %}
+                          <li class="nav-item">
+                              <a class="nav-link" href="/profile">Profile</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/logout">Logout</a>
+                          </li>
+                      {% else  %}
+                          <li class="nav-item">
+                               <a class="nav-link" href="/login">Login</a>
+                          </li>
+                          <li class="nav-item">
+                               <a class="nav-link" href="/register">Register</a>
+                          </li>
+                      {% endif %}
+                      <li class="nav-item">
+                           <a class="nav-link" href="/admin">Admin</a>
+                      </li>
+                      <li class="nav-item d-block d-md-none">
+                        <div class="dropdown show">
+                          <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;">
+                            Navigation
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Latest Posts</a>
+                            <a class="dropdown-item" href="#">Announcements</a>
+                            <a class="dropdown-item" href="#">Calendars</a>
+                            <a class="dropdown-item" href="#">Etc.</a>
+                          </div>
+                        </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <div class="container col-12 p-0 d-flex justify-content-between mt-3">
+          <div class="container col-12 col-md-7 ml-0 delete-sidebar">
+              <div class="row">
+                  {% if messages %}
+                      {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} col-12 pt-4">
+                              {{ message }}
+                          </div>
+                      {% endfor %}
+                  {% endif %}
+                  {% block content %}{% endblock content %}
+              </div>
+          </div>
+          <div class="container mr-0 d-none d-md-block" style="width: 225px;">
+              <div class="row">
+                  <div class="col-12 mt-3 sidebar" style="border: 5px solid #262626; padding:0; ">
+                      <a class="sidebar" style="display: block; line-height: 40px; text-decoration: none;" href="#">
+                          <div class="container-fluid mt-2 sb-element" >
+                              Latest Posts
+                          </div>
+                      </a>
+                      <a class="sidebar" style="display: block; line-height: 40px; text-decoration: none;" href="#">
+                          <div class="container-fluid sb-element" >
+                              Announcements
+                          </div>
+                      </a>
+                      <a class="sidebar" style="display: block; line-height: 40px; text-decoration: none;" href="#">
+                          <div class="container-fluid sb-element" >
+                              Calendars
+                          </div>
+                      </a>
+                      <a class="sidebar" style="display: block; line-height: 40px; text-decoration: none;" href="#">
+                          <div class="container-fluid mb-2 sb-element" >
+                              Etc.
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

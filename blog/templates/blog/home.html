@@ -1,0 +1,85 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="d-flex mt-3 p-0 pr-3 col-sm-12 col-md-12 col-lg-12 justify-content-between flex-row-reverse">
+        {% if is_paginated %}
+            <div class="my_pages">
+
+                {% if page_obj.has_previous %}
+                    <a class="btn " href="?page=1"><img style="height: 14px;" src="../../static/blog/images/d_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.previous_page_number }}"><img style="height: 14px;" src="../../static/blog/images/slider.png"></a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn" style="background-color: #3c3a3a;color: #ffffff; border: 1px solid #3c3a3a;" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn" href="?page={{ page_obj.next_page_number }}"><img style="height: 14px;" src="../../static/blog/images/f_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.paginator.num_pages }}"><img style="height: 14px;" src="../../static/blog/images/d_slider_f.png"></a>
+                {% endif %}
+            </div>
+
+        {% endif  %}
+
+        {% if user.is_authenticated %}
+            <div>
+                <a style="text-decoration: none;" href="{% url 'post-create' %}">
+                    <div class="ml-3 p-2 create_post sidebar sb-element">
+                        Create New Post
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+
+    {% for post in posts %}
+        <div class="col-sm-12 col-md-12 col-lg-12 d-flex mt-3">
+            <div class="posts col-12 d-flex">
+                <div class="col-2 p-0">
+                    <img class="rounded-circle account-img" style="width: 100%;" src="{{ post.author.profile.image.url }}">
+                </div>
+                <div class="col-10">
+                    <a class="title" href="{% url 'post-detail' post.id %}">
+                        <h2>{{ post.title }}</h2>
+                    </a>
+                    <p class="author">Posted by <a href="{% url 'some-profile' post.author.username %}"><span style="color: brown; font-weight: bold;">{{ post.author }}</span></a> on {{ post.date|date:"F j, Y" }}</p>
+                    <p style="color: #9e9e9e;">{{ post.content }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="d-flex mt-3 p-0 pl-3 col-sm-12 col-md-12 col-lg-12">
+        {% if is_paginated %}
+            <div class="my_pages mb-4">
+
+                {% if page_obj.has_previous %}
+                    <a class="btn " href="?page=1"><img style="height: 14px;" src="../../static/blog/images/d_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.previous_page_number }}"><img style="height: 14px;" src="../../static/blog/images/slider.png"></a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn" style="background-color: #3c3a3a;color: #ffffff; border: 1px solid #3c3a3a;" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn" href="?page={{ page_obj.next_page_number }}"><img style="height: 14px;" src="../../static/blog/images/f_slider.png"></a>
+                    <a class="btn" href="?page={{ page_obj.paginator.num_pages }}"><img style="height: 14px;" src="../../static/blog/images/d_slider_f.png"></a>
+                {% endif %}
+            </div>
+
+        {% endif  %}
+    </div>
+
+
+
+{% endblock content %}
